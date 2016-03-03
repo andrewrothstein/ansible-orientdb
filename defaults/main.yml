@@ -5,3 +5,18 @@ orientdb_edition : community
 orientdb_os : linux
 orientdb_mirror : 'http://orientdb.com/download.php'
 orientdb_ver : '2.1.12'
+
+orientdb_home : /opt/orientdb
+orientdb_password : 'd1d32e0c-e17f-11e5-b188-14dae9f5445f'
+
+orientdb_hazelcast_name: orientdb
+orientdb_hazelcast_password: orientdb
+orientdb_hazelcast_port : 2434
+
+orientdb_hazelcast_multicast:
+  group: '235.1.1.1'
+  port : '{{orientdb_hazelcast_port}}'
+
+orientdb_hazelcast_executor_service:
+  pool_size: 16
+

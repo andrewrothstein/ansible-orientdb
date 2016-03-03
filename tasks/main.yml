@@ -1,34 +1,53 @@
 ---
+- name: create orientdb group
+  group: name=orientdb state=present
+
+- name: create orientdb user
+  user: >-
+    name=orientdb
+    group=orientdb
+    state=present
+
 # tasks file for orientdb
 - name: download tgz
   get_url: >-
     url={{orientdb_tgz_url}}
     dest=/tmp/{{orientdb_tgz}}
-    owner=root
-    group=root
+    owner=orientdb
+    group=orientdb
 
 - name: unarchive
   unarchive: >-
     src=/tmp/{{orientdb_tgz}}
     dest=/opt
-    owner=root
-    group=root
+    owner=orientdb
+    group=orientdb
     creates=/opt/{{orientdb_name}}
 
 - name: link /opt/orientdb
   file:
     state=link
     src=/opt/{{orientdb_name}}
-    dest=/opt/orientdb
-    owner=root
-    group=root
+    dest={{orientdb_home}}
+    owner=orientdb
+    group=orientdb
 
 - name: add orientdb to default path
   copy: >-
     src=etc/profile.d/orientdb.sh
     dest=/etc/profile.d/orientdb.sh
-    owner=root
-    group=root
+    owner=orientdb
+    group=orientdb
     mode=0644
+
+- name: configurating...
+  template: >-
+    src=config/{{item}}.j2
+    dest={{orientdb_config_dir}}/{{item}}
+    owner=orientdb
+    group=orientdb
+    mode=440
+  with_items:
+    - hazelcast.xml
+    - orientdb-server-config.xml
     
-  
