@@ -14,4 +14,21 @@
     owner=root
     group=root
     creates=/opt/{{orientdb_name}}
+
+- name: link /opt/orientdb
+  file:
+    state=link
+    src=/opt/{{orientdb_name}}
+    dest=/opt/orientdb
+    owner=root
+    group=root
+
+- name: add orientdb to default path
+  copy: >-
+    src=etc/profile.d/orientdb.sh
+    dest=/etc/profile.d/orientdb.sh
+    owner=root
+    group=root
+    mode=0644
+    
   
