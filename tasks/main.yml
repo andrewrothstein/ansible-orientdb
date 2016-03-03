@@ -1,0 +1,17 @@
+---
+# tasks file for orientdb
+- name: download tgz
+  get_url: >-
+    url={{orientdb_tgz_url}}
+    dest=/tmp/{{orientdb_tgz}}
+    owner=root
+    group=root
+
+- name: unarchive
+  unarchive: >-
+    src=/tmp/{{orientdb_tgz}}
+    dest=/opt
+    owner=root
+    group=root
+    creates=/opt/{{orientdb_name}}
+  

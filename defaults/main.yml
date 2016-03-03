@@ -1,0 +1,7 @@
+---
+# defaults file for orientdb
+orientdb_email : 'unknown@unkown.com'
+orientdb_edition : community
+orientdb_os : linux
+orientdb_mirror : 'http://orientdb.com/download.php'
+orientdb_ver : '2.1.12'

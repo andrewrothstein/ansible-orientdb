@@ -1,0 +1,5 @@
+---
+# vars file for orientdb
+orientdb_name : 'orientdb-community-{{orientdb_ver}}'
+orientdb_tgz : '{{orientdb_name}}.tar.gz'
+orientdb_tgz_url : '{{orientdb_mirror}}/?email={{orientdb_email}}&file={{orientdb_tgz}}&os={{orientdb_os}}'
