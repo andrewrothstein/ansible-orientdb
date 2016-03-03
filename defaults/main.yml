@@ -9,16 +9,23 @@ orientdb_ver : '2.1.12'
 orientdb_home : /opt/orientdb
 orientdb_password : 'd1d32e0c-e17f-11e5-b188-14dae9f5445f'
 
-orientdb_hazelcast_name: orientdb
-orientdb_hazelcast_password: orientdb
-orientdb_hazelcast_port : 2434
+orientdb:
+  hazelcast:
+    name: orientdb
+    password: orientdb
+    port : 2434
 
-orientdb_hazelcast_multicast:
-  group: '235.1.1.1'
-  port : '{{orientdb_hazelcast_port}}'
+    multicast:
+      enabled: true
+      group: '235.1.1.1'
+      port : 2343
 
-orientdb_hazelcast_executor_service:
-  pool_size: 16
+    tcp:
+      enabled: false
+      network_interface: eth0
+
+    executor_service:
+      pool_size: 16
 
 orientdb_profiler:
   enabled: false

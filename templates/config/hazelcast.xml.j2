@@ -9,22 +9,30 @@
 	the specific language governing permissions and ~ limitations under the License. -->
 
 <hazelcast
-	xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-3.0.xsd"
-	xmlns="http://www.hazelcast.com/schema/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<group>
-		<name>{{orientdb_name}}</name>
-		<password>{{orientdb_password}}</password>
-	</group>
-	<network>
-		<port auto-increment="true">{{orientdb_hazelcast_port}}</port>
-		<join>
-			<multicast enabled="true">
-				<multicast-group>{{orientdb_hazelcast_multicast.group}}</multicast-group>
-				<multicast-port>{{orientdb_hazelcast_multicast.port}}</multicast-port>
-			</multicast>
-		</join>
-	</network>
-	<executor-service>
-		<pool-size>{{orientdb_hazelcast_executor_service.pool_size}}</pool-size>
-	</executor-service>
+    xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-3.0.xsd"
+    xmlns="http://www.hazelcast.com/schema/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <group>
+    <name>{{orientdb.hazelcast.name}}</name>
+    <password>{{orientdb.hazelcast.password}}</password>
+  </group>
+  <network>
+    <port auto-increment="true">{{orientdb.hazelcast.port}}</port>
+    <join>
+{% if orientdb.hazelcast.multicast is defined and orientdb.hazelcast.multicast.enabled %}
+      <multicast enabled="true">
+	<multicast-group>{{orientdb.hazelcast.multicast.group}}</multicast-group>
+	<multicast-port>{{orientdb.hazelcast.multicast.port}}</multicast-port>
+      </multicast>
+{% endif %}
+{% if orientdb.hazelcast.tcp is defined and orientdb.hazelcast.tcp.enabled and orientdb in groups %}
+      <tcp-ip enabled="{{orientdb.hazelcast.tcp.enabled | to_json}}">
+{% for peer in groups['orientdb'] %}
+	<member>{{hostvars[peer]['ansible_' + orientdb.tcp.network_interfact]['ipv4']['address']}}</member>
+{% endfor %}	
+{% endif %}
+    </join>
+  </network>
+  <executor-service>
+    <pool-size>{{orientdb.hazelcast.executor_service.pool_size}}</pool-size>
+  </executor-service>
 </hazelcast>
