@@ -30,37 +30,41 @@
         <!-- CLUSTER PLUGIN, TO TURN ON SET THE 'ENABLED' PARAMETER TO 'true' -->
         <handler class="com.orientechnologies.orient.server.hazelcast.OHazelcastPlugin">
             <parameters>
-                <!-- <parameter name="nodeName" value="europe1" /> -->
+                <parameter name="nodeName" value="{{orientdb_hazelcast_nodename}}" />
                 <parameter name="enabled" value="${distributed}"/>
                 <parameter name="configuration.db.default"
                            value="${ORIENTDB_HOME}/config/default-distributed-db-config.json"/>
                 <parameter name="configuration.hazelcast" value="${ORIENTDB_HOME}/config/hazelcast.xml"/>
             </parameters>
         </handler>
+{% if orientdb_profiler is defined and orientdb_profiler.enabled %}
         <!-- JMX SERVER, TO TURN ON SET THE 'ENABLED' PARAMETER TO 'true' -->
         <handler class="com.orientechnologies.orient.server.handler.OJMXPlugin">
             <parameters>
-                <parameter name="enabled" value="false"/>
-                <parameter name="profilerManaged" value="true"/>
+                <parameter name="enabled" value="{{orientdb_profiler.enabled | to_json}}"/>
+                <parameter name="profilerManaged" value="{{orientdb_profiler.managed | to_json}}"/>
             </parameters>
         </handler>
+{% endif %}
+{% if orientdb_autobackup is defined and orientdb_autobackup.enabled %}
         <!-- AUTOMATIC BACKUP, TO TURN ON SET THE 'ENABLED' PARAMETER TO 'true' -->
         <handler class="com.orientechnologies.orient.server.handler.OAutomaticBackup">
             <parameters>
-                <parameter name="enabled" value="false"/>
-                <parameter name="delay" value="4h"/>
-                <parameter name="firstTime" value="23:00:00"/>
-                <parameter name="target.directory" value="backup"/>
-                <parameter name="target.fileName" value="${DBNAME}-${DATE:yyyyMMddHHmmss}.zip"/>
-                <parameter name="compressionLevel" value="9"/>
-                <parameter name="bufferSize" value="1048576"/>
+                <parameter name="enabled" value="{{orientdb_autobackup.enabled | to_json}}"/>
+                <parameter name="delay" value="{{orientdb_autobackup.delay}}"/>
+                <parameter name="firstTime" value="{{orientdb_autobackup.firstTime}}"/>
+                <parameter name="target.directory" value="{{orientdb_autobackup.target.dir}}"/>
+                <parameter name="target.fileName" value="{{orientdb_autobackup.target.filename}}"/>
+                <parameter name="compressionLevel" value="{{orientdb_autobackup.compressionLevel}}"/>
+                <parameter name="bufferSize" value="{{orientdb_autobackup.bufferSize"/>
                 <!--${DBNAME} AND ${DATE:} VARIABLES ARE SUPPORTED -->
-                <parameter name="db.include" value=""/>
+                <parameter name="db.include" value="{{orientdb_autobackup.db.include}}"/>
                 <!-- DEFAULT: NO ONE, THAT MEANS ALL DATABASES. USE COMMA TO SEPARATE MULTIPLE DATABASE NAMES -->
-                <parameter name="db.exclude" value=""/>
+                <parameter name="db.exclude" value="{{orientdb_autobackup.db.exclude}}"/>
                 <!-- USE COMMA TO SEPARATE MULTIPLE DATABASE NAMES -->
             </parameters>
         </handler>
+{% endif %}
         <!-- SERVER SIDE SCRIPT INTERPRETER. WARNING! THIS CAN BE A SECURITY HOLE:
             ENABLE IT ONLY IF CLIENTS ARE TRUCT, TO TURN ON SET THE 'ENABLED' PARAMETER
             TO 'true' -->
@@ -71,19 +75,20 @@
                 <parameter name="allowedLanguages" value="SQL"/>
             </parameters>
         </handler>
+{% if orientdb_tokenhandler is defined and orientdb_tokenhandler.enabled %}
         <!-- USE SESSION TOKEN, TO TURN ON SET THE 'ENABLED' PARAMETER TO 'true' -->
         <handler class="com.orientechnologies.orient.server.token.OrientTokenHandler">
             <parameters>
-                <parameter name="enabled" value="false"/>
+                <parameter name="enabled" value="{{orientdb_tokenhandler.enabled | to_json}}"/>
                 <!-- PRIVATE KEY -->
-                <parameter name="oAuth2Key" value=""/>
+                <parameter name="oAuth2Key" value="{{orientdb_tokenhandler.oAuth2Key}}"/>
                 <!-- SESSION LENGTH IN MINUTES, DEFAULT=1 HOUR -->
-                <parameter name="sessionLength" value="60"/>
+                <parameter name="sessionLength" value="{{orientdb_tokenhandler.sessionLength}}"/>
                 <!-- ENCRYPTION ALGORITHM, DEFAULT=HmacSHA256 -->
-                <parameter name="encryptionAlgorithm" value="HmacSHA256"/>
+                <parameter name="encryptionAlgorithm" value="{{orientdb_tokenhandler.encryptionAlgorithm}}"/>
             </parameters>
         </handler>
-
+{% endif %}
         <handler class="com.orientechnologies.orient.server.plugin.livequery.OLiveQueryPlugin">
             <!-- EXPERIMENTAL FEATURE, enable at your own risk -->
             <parameters>

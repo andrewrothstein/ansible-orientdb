@@ -20,3 +20,26 @@ orientdb_hazelcast_multicast:
 orientdb_hazelcast_executor_service:
   pool_size: 16
 
+orientdb_profiler:
+  enabled: false
+  managed: true
+  
+orientdb_autobackup:
+  enabled: false
+  delay: '4h'
+  firstTime: '23:00:00'
+  target:
+    dir: backup
+    filename: '${DBNAME}-${DATE:yyyyMMddHHmmss}.zip'
+  compressionLevel: 9
+  bufferSize: 1048576
+  db :
+    include: ''
+    exclude: ''
+
+orientdb_tokenhandler:
+  enabled: false
+  oAuth2Key: '2bc824a0-e183-11e5-81b6-14dae9f5445f'
+  sessionLength : 60
+  encryptionAlgorithm: HmacSHA256
+

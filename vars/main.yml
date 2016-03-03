@@ -5,3 +5,5 @@ orientdb_tgz : '{{orientdb_name}}.tar.gz'
 orientdb_tgz_url : '{{orientdb_mirror}}/?email={{orientdb_email}}&file={{orientdb_tgz}}&os={{orientdb_os}}'
 
 orientdb_config_dir : '{{orientdb_home}}/config'
+orientdb_hazelcast_nodename: '{{inventory_hostname}}'
+
