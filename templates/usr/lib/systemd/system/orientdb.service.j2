@@ -6,7 +6,7 @@ Wants=network.target
 [Service]
 User=orientdb
 Environment=ORIENTDB_ROOT_PASSWORD={{ orientdb_root_password }}
-ExecStart=/opt/orientdb/bin/server.sh
+ExecStart=/opt/orientdb/bin/{% if 'orientdb' in groups %}d{% endif %}server.sh
 Restart=on-failure
 RestartSec=20
 
