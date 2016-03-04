@@ -1,10 +1,10 @@
 {
     "autoDeploy": true,
-    "readQuorum": {{ ((groups['orientdb']|length / 2) | int + 1) | to_json }}
+    "readQuorum": {{ ((groups['orientdb']|length / 2) | int + 1) | to_json }},
     "writeQuorum": {{ ((groups['orientdb']|length / 2) | int + 1) | to_json }},
     "failureAvailableNodesLessQuorum": false,
     "readYourWrites": true,
-    "replication" : true
+    "replication" : true,
     "servers": {
 	"*": "master"
     },
