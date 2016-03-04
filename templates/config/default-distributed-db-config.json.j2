@@ -1,22 +1,23 @@
 {
     "autoDeploy": true,
+    "hotAlignment": false,
+    "executionMode": "undefined",
     "readQuorum": {{ ((groups['orientdb']|length / 2) | int + 1) | to_json }},
     "writeQuorum": {{ ((groups['orientdb']|length / 2) | int + 1) | to_json }},
     "failureAvailableNodesLessQuorum": false,
     "readYourWrites": true,
-    "replication" : true,
     "servers": {
-	"*": "master"
+	"*": "MASTER"
     },
     "clusters": {
 	"internal": {
-	    "replication" : false
 	},
 	"index": {
-	    "replication" : false
 	},
 	"*": {
-	    "replication" : true
+	    "servers" : [
+		{% for peer in groups['orientdb'] %}{{ peer | hash('sha1') | to_json }}{% if not loop.last %},{% endif %}{% endfor %}
+	    ]
 	}
     }
 }
