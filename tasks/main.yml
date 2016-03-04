@@ -26,7 +26,7 @@
     creates=/opt/{{orientdb_name}}
 
 - name: link /opt/orientdb
-  file:
+  file: >-
     state=link
     src=/opt/{{orientdb_name}}
     dest={{orientdb_home}}
