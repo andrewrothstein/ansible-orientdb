@@ -47,8 +47,25 @@
     dest={{orientdb_config_dir}}/{{item}}
     owner=orientdb
     group=orientdb
-    mode=440
+    mode=600
   with_items:
     - hazelcast.xml
-#    - orientdb-server-config.xml
+    - orientdb-server-config.xml
+    
+- name: install service
+  template: >-
+    src=etc/systemd/system/orientdb.service.j2
+    dest=/etc/systemd/system/orientdb.service
+    owner=root
+    group=root
+    mode=400
+  register: orientdb_service_unit
+
+- name: systemctl daemon-reload
+  command: systemctl daemon-reload
+  when: orientdb_service_unit|changed
+
+- name: launch orientdb service
+  service: name=orientdb state=started enabled=yes
+  
     

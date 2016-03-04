@@ -7,6 +7,7 @@ orientdb_mirror : 'http://orientdb.com/download.php'
 orientdb_ver : '2.1.12'
 
 orientdb_home : /opt/orientdb
+orientdb_root_password: 'b7d3abb6-e1c1-11e5-90cc-f77bf92301f2'
 orientdb_password : 'd1d32e0c-e17f-11e5-b188-14dae9f5445f'
 
 orientdb_hazelcast_nodename : '{{inventory_hostname}}'

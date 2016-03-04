@@ -1,0 +1,14 @@
+[Unit]
+Description=OrientDB
+After=network.target
+Wants=network.target
+
+[Service]
+User=orientdb
+Environment=ORIENTDB_ROOT_PASSWORD={{ orientdb_root_password }}
+ExecStart=/opt/orientdb/bin/server.sh
+Restart=on-failure
+RestartSec=20
+
+[Install]
+WantedBy=multi-user.target
