@@ -1,0 +1,22 @@
+{
+    "autoDeploy": true,
+    "readQuorum": {{ ((groups['orientdb']|length / 2) | int + 1) | to_json }}
+    "writeQuorum": {{ ((groups['orientdb']|length / 2) | int + 1) | to_json }},
+    "failureAvailableNodesLessQuorum": false,
+    "readYourWrites": true,
+    "replication" : true
+    "servers": {
+	"*": "master"
+    },
+    "clusters": {
+	"internal": {
+	    "replication" : false
+	},
+	"index": {
+	    "replication" : false
+	},
+	"*": {
+	    "replication" : true
+	}
+    }
+}

@@ -30,7 +30,7 @@
         <!-- CLUSTER PLUGIN, TO TURN ON SET THE 'ENABLED' PARAMETER TO 'true' -->
         <handler class="com.orientechnologies.orient.server.hazelcast.OHazelcastPlugin">
             <parameters>
-                <parameter name="nodeName" value="{{orientdb_hazelcast_nodename}}" />
+                <parameter name="nodeName" value="{{orientdb_hazelcast_nodename|hash('sha1')}}" />
                 <parameter name="enabled" value="${distributed}"/>
                 <parameter name="configuration.db.default"
                            value="${ORIENTDB_HOME}/config/default-distributed-db-config.json"/>

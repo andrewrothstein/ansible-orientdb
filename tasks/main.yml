@@ -51,6 +51,7 @@
   with_items:
     - hazelcast.xml
     - orientdb-server-config.xml
+    - default-distributed-db-config.json
     
 - name: install service
   template: >-
