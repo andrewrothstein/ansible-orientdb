@@ -18,6 +18,7 @@
 
 - name: unarchive
   unarchive: >-
+    copy=no
     src=/tmp/{{orientdb_tgz}}
     dest=/opt
     owner=orientdb
@@ -49,5 +50,5 @@
     mode=440
   with_items:
     - hazelcast.xml
-    - orientdb-server-config.xml
+#    - orientdb-server-config.xml
     

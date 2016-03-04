@@ -12,27 +12,28 @@
     xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-3.0.xsd"
     xmlns="http://www.hazelcast.com/schema/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <group>
-    <name>{{orientdb.hazelcast.name}}</name>
-    <password>{{orientdb.hazelcast.password}}</password>
+    <name>{{orientdb_hazelcast_name}}</name>
+    <password>{{orientdb_hazelcast_password}}</password>
   </group>
   <network>
-    <port auto-increment="true">{{orientdb.hazelcast.port}}</port>
+    <port auto-increment="true">{{orientdb_hazelcast_port}}</port>
     <join>
-{% if orientdb.hazelcast.multicast is defined and orientdb.hazelcast.multicast.enabled %}
+{% if orientdb_hazelcast_multicast_enabled %}
       <multicast enabled="true">
-	<multicast-group>{{orientdb.hazelcast.multicast.group}}</multicast-group>
-	<multicast-port>{{orientdb.hazelcast.multicast.port}}</multicast-port>
+	<multicast-group>{{orientdb_hazelcast_multicast_group}}</multicast-group>
+	<multicast-port>{{orientdb_hazelcast_multicast_port}}</multicast-port>
       </multicast>
 {% endif %}
-{% if orientdb.hazelcast.tcp is defined and orientdb.hazelcast.tcp.enabled and orientdb in groups %}
-      <tcp-ip enabled="{{orientdb.hazelcast.tcp.enabled | to_json}}">
+{% if orientdb_hazelcast_tcp_enabled and 'orientdb' in groups %}
+      <tcp-ip enabled="{{orientdb_hazelcast_tcp_enabled | to_json}}">
 {% for peer in groups['orientdb'] %}
-	<member>{{hostvars[peer]['ansible_' + orientdb.tcp.network_interfact]['ipv4']['address']}}</member>
-{% endfor %}	
+	<member>{{hostvars[peer]['ansible_' + orientdb_hazelcast_tcp_network_interface]['ipv4']['address']}}</member>
+{% endfor %}
+      </tcp-ip>
 {% endif %}
     </join>
   </network>
   <executor-service>
-    <pool-size>{{orientdb.hazelcast.executor_service.pool_size}}</pool-size>
+    <pool-size>{{orientdb_hazelcast_executor_service_pool_size}}</pool-size>
   </executor-service>
 </hazelcast>
