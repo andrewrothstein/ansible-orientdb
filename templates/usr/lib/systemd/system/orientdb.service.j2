@@ -5,7 +5,7 @@ Wants=network.target
 
 [Service]
 User=orientdb
-ExecStart=/opt/orientdb/bin/dserver.sh
+ExecStart={{orientdb_home}}/orientdb/bin/dserver.sh
 Restart=on-failure
 RestartSec=20
 

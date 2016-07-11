@@ -12,59 +12,40 @@
   user: >-
     name={{orientdb_user}}
     group={{orientdb_group}}
+    home={{orientdb_home}}
     state=present
 
-# tasks file for orientdb
 - name: download tgz
   become: yes
-  become_user: root
+  become_user: orientdb
   get_url: >-
     url={{orientdb_tgz_url}}
-    dest=/tmp/{{orientdb_tgz}}
-    owner={{orientdb_user}}
-    group={{orientdb_group}}
+    dest={{orientdb_home}}/{{orientdb_tgz}}
+    mode=0644
 
 - name: unarchive
   become: yes
-  become_user: root
+  become_user: orientdb
   unarchive: >-
     copy=no
-    src=/tmp/{{orientdb_tgz}}
-    dest={{orientdb_parent}}
-    owner={{orientdb_user}}
-    group={{orientdb_group}}
-    creates={{orientdb_parent}}/{{orientdb_name}}
+    src={{orientdb_home}}/{{orientdb_tgz}}
+    dest={{orientdb_home}}
+    creates={{orientdb_home}}/{{orientdb_name}}
 
 - name: link /opt/orientdb
   become: yes
-  become_user: root
+  become_user: orientdb
   file: >-
     state=link
-    src={{orientdb_parent}}/{{orientdb_name}}
-    dest={{orientdb_home}}
-    owner={{orientdb_user}}
-    group={{orientdb_group}}
-
-- name: add orientdb to default path
-  become: yes
-  become_user: root
-  with_items:
-    - etc/profile.d/orientdb.sh
-  copy: >-
-    src={{item}}
-    dest=/{{item}}
-    owner={{orientdb_user}}
-    group={{orientdb_group}}
-    mode=0644
+    src={{orientdb_home}}/{{orientdb_name}}
+    dest={{orientdb_home}}/orientdb
 
 - name: configurating...
   become: yes
-  become_user: root
+  become_user: orientdb
   template: >-
     src=config/{{item}}.j2
     dest={{orientdb_config_dir}}/{{item}}
-    owner={{orientdb_user}}
-    group={{orientdb_group}}
     mode=0600
   with_items:
     - hazelcast.xml
