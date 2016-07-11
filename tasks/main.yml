@@ -1,11 +1,13 @@
 ---
 - name: create orientdb group
-  group: name=orientdb state=present
+  group: >
+    name={{orientdb_group}}
+    state=present
 
 - name: create orientdb user
   user: >-
-    name=orientdb
-    group=orientdb
+    name={{orientdb_user}}
+    group={{orientdb_group}}
     state=present
 
 # tasks file for orientdb
@@ -13,60 +15,68 @@
   get_url: >-
     url={{orientdb_tgz_url}}
     dest=/tmp/{{orientdb_tgz}}
-    owner=orientdb
-    group=orientdb
+    owner={{orientdb_user}}
+    group={{orientdb_group}}
 
 - name: unarchive
   unarchive: >-
     copy=no
     src=/tmp/{{orientdb_tgz}}
-    dest=/opt
-    owner=orientdb
-    group=orientdb
-    creates=/opt/{{orientdb_name}}
+    dest={{orientdb_parent}}
+    owner={{orientdb_user}}
+    group={{orientdb_group}}
+    creates={{orientdb_parent}}/{{orientdb_name}}
 
 - name: link /opt/orientdb
   file: >-
     state=link
-    src=/opt/{{orientdb_name}}
+    src={{orientdb_parent}}/{{orientdb_name}}
     dest={{orientdb_home}}
-    owner=orientdb
-    group=orientdb
+    owner={{orientdb_user}}
+    group={{orientdb_group}}
 
 - name: add orientdb to default path
+  with_items:
+    - etc/profile.d/orientdb.sh
   copy: >-
-    src=etc/profile.d/orientdb.sh
-    dest=/etc/profile.d/orientdb.sh
-    owner=orientdb
-    group=orientdb
+    src={{item}}
+    dest=/{{item}}
+    owner={{orientdb_user}}
+    group={{orientdb_group}}
     mode=0644
 
 - name: configurating...
   template: >-
     src=config/{{item}}.j2
     dest={{orientdb_config_dir}}/{{item}}
-    owner=orientdb
-    group=orientdb
-    mode=600
+    owner={{orientdb_user}}
+    group={{orientdb_group}}
+    mode=0600
   with_items:
     - hazelcast.xml
     - orientdb-server-config.xml
     - default-distributed-db-config.json
     
 - name: install service
+  become: yes
+  become_user: root
   template: >-
     src=usr/lib/systemd/system/orientdb.service.j2
     dest=/usr/lib/systemd/system/orientdb.service
     owner=root
     group=root
-    mode=400
+    mode=0644
   register: orientdb_service_unit
 
 - name: systemctl daemon-reload
+  become: yes
+  become_user: root
   command: systemctl daemon-reload
   when: orientdb_service_unit|changed
 
 - name: launch orientdb service
+  become: yes
+  become_user: root
   service: name=orientdb state=started enabled=yes
   
     
