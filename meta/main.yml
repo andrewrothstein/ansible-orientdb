@@ -21,9 +21,9 @@ galaxy_info:
     - development
 
 dependencies:
-  - role: andrewrothstein.unarchive-deps
+  - src: andrewrothstein.unarchive-deps
     version: v1.0.2
-  - role: andrewrothstein.java
+  - src: andrewrothstein.java
     version: v1.0.0
   
   
