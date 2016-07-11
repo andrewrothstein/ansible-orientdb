@@ -1,14 +1,14 @@
 ---
 - name: create orientdb group
   become: yes
-  become: root
+  become_user: root
   group: >
     name={{orientdb_group}}
     state=present
 
 - name: create orientdb user
   become: yes
-  become: root
+  become_user: root
   user: >-
     name={{orientdb_user}}
     group={{orientdb_group}}
@@ -17,7 +17,7 @@
 # tasks file for orientdb
 - name: download tgz
   become: yes
-  become: root
+  become_user: root
   get_url: >-
     url={{orientdb_tgz_url}}
     dest=/tmp/{{orientdb_tgz}}
@@ -26,7 +26,7 @@
 
 - name: unarchive
   become: yes
-  become: root
+  become_user: root
   unarchive: >-
     copy=no
     src=/tmp/{{orientdb_tgz}}
@@ -37,7 +37,7 @@
 
 - name: link /opt/orientdb
   become: yes
-  become: root
+  become_user: root
   file: >-
     state=link
     src={{orientdb_parent}}/{{orientdb_name}}
@@ -47,7 +47,7 @@
 
 - name: add orientdb to default path
   become: yes
-  become: root
+  become_user: root
   with_items:
     - etc/profile.d/orientdb.sh
   copy: >-
@@ -59,7 +59,7 @@
 
 - name: configurating...
   become: yes
-  become: root
+  become_user: root
   template: >-
     src=config/{{item}}.j2
     dest={{orientdb_config_dir}}/{{item}}
