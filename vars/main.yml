@@ -4,7 +4,7 @@ orientdb_name : 'orientdb-community-{{orientdb_ver}}'
 orientdb_tgz : '{{orientdb_name}}.tar.gz'
 orientdb_tgz_url : '{{orientdb_mirror}}/?email={{orientdb_email}}&file={{orientdb_tgz}}&os={{orientdb_os}}'
 
-orientdb_config_dir : '{{orientdb_home}}/config'
+orientdb_config_dir : '{{orientdb_home}}/orientdb/config'
 
 
 
