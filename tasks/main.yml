@@ -22,7 +22,7 @@
     url={{orientdb_tgz_url}}
     dest={{orientdb_home}}/{{orientdb_tgz}}
     owner={{orientdb_user}}
-    group={{oriebtdb_group}}
+    group={{orientdb_group}}
     mode=0644
 
 - name: unarchive
