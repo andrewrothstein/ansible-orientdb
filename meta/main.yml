@@ -18,7 +18,8 @@ galaxy_info:
         - all
 
   galaxy_tags:
-    - development
+    - graph
+    - database
 
 dependencies:
   - role: andrewrothstein.unarchive-deps
