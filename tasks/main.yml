@@ -17,7 +17,7 @@
 
 - name: download tgz
   become: yes
-  become_user: orientdb
+  become_user: '{{orientdb_user}}'
   get_url: >-
     url={{orientdb_tgz_url}}
     dest={{orientdb_home}}/{{orientdb_tgz}}
@@ -34,44 +34,10 @@
 
 - name: link /opt/orientdb
   become: yes
-  become_user: orientdb
+  become_user: '{{orientdb_user}}'
   file: >-
     state=link
     src={{orientdb_home}}/{{orientdb_name}}
     dest={{orientdb_home}}/orientdb
 
-- name: configurating...
-  become: yes
-  become_user: orientdb
-  template: >-
-    src=config/{{item}}.j2
-    dest={{orientdb_config_dir}}/{{item}}
-    mode=0600
-  with_items:
-    - hazelcast.xml
-    - orientdb-server-config.xml
-    - default-distributed-db-config.json
-    
-- name: install service
-  become: yes
-  become_user: root
-  template: >-
-    src=usr/lib/systemd/system/orientdb.service.j2
-    dest=/usr/lib/systemd/system/orientdb.service
-    owner=root
-    group=root
-    mode=0644
-  register: orientdb_service_unit
-
-- name: systemctl daemon-reload
-  become: yes
-  become_user: root
-  command: systemctl daemon-reload
-  when: orientdb_service_unit|changed
-
-- name: launch orientdb service
-  become: yes
-  become_user: root
-  service: name=orientdb state=started enabled=yes
-  
     
