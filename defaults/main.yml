@@ -4,7 +4,7 @@ orientdb_email : 'unknown@unkown.com'
 orientdb_edition : community
 orientdb_os : linux
 orientdb_mirror : 'http://orientdb.com/download.php'
-orientdb_ver : '2.2.9'
+orientdb_ver : '2.2.13'
 orientdb_user : orientdb
 orientdb_group : orientdb
 
