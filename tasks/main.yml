@@ -2,48 +2,47 @@
 - name: create orientdb group
   become: yes
   become_user: root
-  group: >
-    name={{orientdb_group}}
-    state=present
+  group:
+    name: '{{orientdb_group}}'
+    state: present
 
 - name: create orientdb user
   become: yes
   become_user: root
-  user: >-
-    name={{orientdb_user}}
-    group={{orientdb_group}}
-    home={{orientdb_home}}
-    state=present
+  user:
+    name: '{{orientdb_user}}'
+    group: '{{orientdb_group}}'
+    home: '{{orientdb_home}}'
+    state: present
 
 - name: download tgz
   become: yes
   become_user: root
-  get_url: >-
-    url={{orientdb_tgz_url}}
-    dest={{orientdb_home}}/{{orientdb_tgz}}
-    owner={{orientdb_user}}
-    group={{orientdb_group}}
-    mode=0644
+  get_url:
+    url: '{{orientdb_tgz_url}}'
+    dest: '{{orientdb_home}}/{{orientdb_tgz}}'
+    owner: '{{orientdb_user}}'
+    group: '{{orientdb_group}}'
+    checksum: '{{orientdb_checksum}}'
+    mode: '0644'
 
 - name: unarchive
   become: yes
   become_user: root
-  unarchive: >-
-    copy=no
-    src={{orientdb_home}}/{{orientdb_tgz}}
-    dest={{orientdb_home}}
-    owner={{orientdb_user}}
-    group={{orientdb_group}}
-    creates={{orientdb_home}}/{{orientdb_name}}
+  unarchive:
+    copy: no
+    src: '{{orientdb_home}}/{{orientdb_tgz}}'
+    dest: '{{orientdb_home}}'
+    owner: '{{orientdb_user}}'
+    group: '{{orientdb_group}}'
+    creates: '{{orientdb_home}}/{{orientdb_name}}'
 
 - name: link /opt/orientdb
   become: yes
   become_user: root
-  file: >-
-    state=link
-    src={{orientdb_home}}/{{orientdb_name}}
-    dest={{orientdb_home}}/orientdb
-    owner={{orientdb_user}}
-    group={{orientdb_group}}
-
-    
+  file:
+    state: link
+    src: '{{orientdb_home}}/{{orientdb_name}}'
+    dest: '{{orientdb_home}}/orientdb'
+    owner: '{{orientdb_user}}'
+    group: '{{orientdb_group}}'
