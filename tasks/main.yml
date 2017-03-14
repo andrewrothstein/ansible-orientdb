@@ -37,7 +37,7 @@
     group: '{{orientdb_group}}'
     creates: '{{orientdb_home}}/{{orientdb_name}}'
 
-- name: link /opt/orientdb
+- name: link orientdb HOME
   become: yes
   become_user: root
   file:
