@@ -1,5 +1,6 @@
 andrewrothstein.orientdb
 =========
+[![Build Status](https://travis-ci.org/andrewrothstein/ansible-orientdb.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-orientdb)
 
 Installs [OrientDB](http://orientdb.com/)
 
