@@ -3,10 +3,7 @@
 orientdb_name : 'orientdb-{{orientdb_edition}}-{{orientdb_ver}}'
 orientdb_tgz : '{{orientdb_name}}.tar.gz'
 
-#http://orientdb.com/download.php?file=orientdb-community-2.2.19.tar.gz&os=linux
+#http://orientdb.com/download.php?file=orientdb-community-2.2.22.tar.gz&os=linux
 orientdb_tgz_url : '{{orientdb_mirror}}/download.php?file={{orientdb_tgz}}&os={{orientdb_os}}'
 
 orientdb_config_dir : '{{orientdb_home}}/orientdb/config'
-
-
-
