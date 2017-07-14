@@ -30,7 +30,7 @@
   become: yes
   become_user: root
   unarchive:
-    copy: no
+    remote_src: no
     src: '{{orientdb_home}}/{{orientdb_tgz}}'
     dest: '{{orientdb_home}}'
     owner: '{{orientdb_user}}'
