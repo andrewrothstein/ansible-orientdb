@@ -3,8 +3,8 @@
 orientdb_edition : community
 orientdb_os : linux
 orientdb_mirror : http://orientdb.com
-orientdb_ver : '2.2.22'
-orientdb_checksum: sha256:13a42109a7bbffd17fac765c691ddfd69e1c8789cc21b6eee1d25d4f82ce809f
+orientdb_ver : '2.2.23'
+orientdb_checksum: sha256:0a1e93d744bbab80896930ec2c98632142397c3eae7fbf1f612ea9a93fd73355
 orientdb_user : orientdb
 orientdb_group : orientdb
 
