@@ -15,34 +15,50 @@
     home: '{{orientdb_home}}'
     state: present
 
-- name: download tgz
+- name: check for existing install...
   become: yes
   become_user: root
-  get_url:
-    url: '{{orientdb_tgz_url}}'
-    dest: '{{orientdb_home}}/{{orientdb_tgz}}'
-    owner: '{{orientdb_user}}'
-    group: '{{orientdb_group}}'
-    checksum: '{{orientdb_checksum}}'
-    mode: '0644'
+  stat:
+    path: '{{orientdb_install_dir}}'
+  changed_when: False
+  register: orientdb_binary
 
-- name: unarchive
-  become: yes
-  become_user: root
-  unarchive:
-    remote_src: yes
-    src: '{{orientdb_home}}/{{orientdb_tgz}}'
-    dest: '{{orientdb_home}}'
-    owner: '{{orientdb_user}}'
-    group: '{{orientdb_group}}'
-    creates: '{{orientdb_home}}/{{orientdb_name}}'
+- when: not orientdb_binary.stat.exists
+  block:
+    - name: download tgz
+      become: yes
+      become_user: root
+      get_url:
+        url: '{{orientdb_tgz_url}}'
+        dest: '{{orientdb_home}}/{{orientdb_tgz}}'
+        owner: '{{orientdb_user}}'
+        group: '{{orientdb_group}}'
+        checksum: '{{orientdb_checksum}}'
+        mode: '0644'
+    - name: unarchive
+      become: yes
+      become_user: root
+      unarchive:
+        remote_src: yes
+        src: '{{orientdb_home}}/{{orientdb_tgz}}'
+        dest: '{{orientdb_home}}'
+        owner: '{{orientdb_user}}'
+        group: '{{orientdb_group}}'
+        creates: '{{orientdb_install_dir}}'
+  always:
+    - name: cleanup...
+      become: yes
+      become_user: root
+      file:
+        path: '{{orientdb_home}}/{{orientdb_tgz}}'
+        state: absent
 
 - name: link orientdb HOME
   become: yes
   become_user: root
   file:
     state: link
-    src: '{{orientdb_home}}/{{orientdb_name}}'
-    dest: '{{orientdb_home}}/orientdb'
+    src: '{{orientdb_install_dir}}'
+    dest: '{{orientdb_link_dir}}'
     owner: '{{orientdb_user}}'
     group: '{{orientdb_group}}'

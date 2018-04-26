@@ -3,8 +3,13 @@
 orientdb_edition : community
 orientdb_os : linux
 orientdb_mirror : http://orientdb.com
-orientdb_ver : '2.2.29'
-orientdb_checksum: sha256:0e4f5d5150afcfb509dcafd6dced587d70f521dab4e27980e30c76c69be78ea9
+orientdb_ver : '2.2.34'
+orientdb_checksums:
+  # wget -O orientdb-community-2.2.29.tar.gz 'http://orientdb.com/download.php?file=orientdb-community-2.2.29.tar.gz&os=linux'
+  '2.2.29': sha256:0e4f5d5150afcfb509dcafd6dced587d70f521dab4e27980e30c76c69be78ea9
+  # wget -O orientdb-community-2.2.34.tar.gz 'http://orientdb.com/download.php?file=orientdb-community-2.2.34.tar.gz&os=linux'
+  '2.2.34': sha256:13533c9eb475f6cfd27e57f6f5c64fdbd32777806e8a5b5af370b3b0638b1fd9
+
 orientdb_user : orientdb
 orientdb_group : orientdb
 
