@@ -3,23 +3,23 @@
   become: yes
   become_user: root
   group:
-    name: '{{orientdb_group}}'
+    name: '{{ orientdb_group }}'
     state: present
 
 - name: create orientdb user
   become: yes
   become_user: root
   user:
-    name: '{{orientdb_user}}'
-    group: '{{orientdb_group}}'
-    home: '{{orientdb_home}}'
+    name: '{{ orientdb_user }}'
+    group: '{{ orientdb_group }}'
+    home: '{{ orientdb_home }}'
     state: present
 
 - name: check for existing install...
   become: yes
   become_user: root
   stat:
-    path: '{{orientdb_install_dir}}'
+    path: '{{ orientdb_install_dir }}'
   changed_when: False
   register: orientdb_binary
 
@@ -29,28 +29,28 @@
       become: yes
       become_user: root
       get_url:
-        url: '{{orientdb_tgz_url}}'
-        dest: '{{orientdb_home}}/{{orientdb_tgz}}'
-        owner: '{{orientdb_user}}'
-        group: '{{orientdb_group}}'
-        checksum: '{{orientdb_checksum}}'
+        url: '{{ orientdb_tgz_url }}'
+        dest: '{{ orientdb_home }}/{{ orientdb_tgz }}'
+        owner: '{{ orientdb_user }}'
+        group: '{{ orientdb_group }}'
+        checksum: '{{ orientdb_checksum }}'
         mode: '0644'
     - name: unarchive
       become: yes
       become_user: root
       unarchive:
         remote_src: yes
-        src: '{{orientdb_home}}/{{orientdb_tgz}}'
-        dest: '{{orientdb_home}}'
-        owner: '{{orientdb_user}}'
-        group: '{{orientdb_group}}'
-        creates: '{{orientdb_install_dir}}'
+        src: '{{ orientdb_home }}/{{ orientdb_tgz }}'
+        dest: '{{ orientdb_home }}'
+        owner: '{{ orientdb_user }}'
+        group: '{{ orientdb_group }}'
+        creates: '{{ orientdb_install_dir }}'
   always:
     - name: cleanup...
       become: yes
       become_user: root
       file:
-        path: '{{orientdb_home}}/{{orientdb_tgz}}'
+        path: '{{ orientdb_home }}/{{ orientdb_tgz }}'
         state: absent
 
 - name: link orientdb HOME
@@ -58,7 +58,7 @@
   become_user: root
   file:
     state: link
-    src: '{{orientdb_install_dir}}'
-    dest: '{{orientdb_link_dir}}'
-    owner: '{{orientdb_user}}'
-    group: '{{orientdb_group}}'
+    src: '{{ orientdb_install_dir }}'
+    dest: '{{ orientdb_link_dir }}'
+    owner: '{{ orientdb_user }}'
+    group: '{{ orientdb_group }}'
