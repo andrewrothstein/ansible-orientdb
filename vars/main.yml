@@ -7,8 +7,6 @@ orientdb_tgz: '{{ orientdb_name }}.tar.gz'
 orientdb_tgz_url: '{{ orientdb_mirror }}/orientdb{{ orientdb_ver.major }}/releases/{{ orientdb_ver_str }}/{{ orientdb_tgz }}'
 orientdb_checksum: '{{ orientdb_checksums[orientdb_ver_str] }}'
 
-
-
 orientdb_install_dir: '{{ orientdb_home }}/{{ orientdb_name }}'
 
 orientdb_tmp_tgz: '{{ orientdb_home }}/{{ orientdb_tgz }}'
