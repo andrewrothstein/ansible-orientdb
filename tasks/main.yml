@@ -1,13 +1,13 @@
 ---
 - name: create orientdb group
-  become: yes
+  become: true
   become_user: root
   group:
     name: '{{ orientdb_group }}'
     state: present
 
-- name: create orientdb user
-  become: yes
+- name: create orientdb user and home directory
+  become: true
   become_user: root
   user:
     name: '{{ orientdb_user }}'
@@ -15,46 +15,46 @@
     home: '{{ orientdb_home }}'
     state: present
 
-- name: check for existing install...
-  become: yes
+- name: check for install in {{ orientdb_install_dir }}
+  become: true
   become_user: root
   stat:
     path: '{{ orientdb_install_dir }}'
-  changed_when: False
+  changed_when: false
   register: orientdb_binary
 
 - when: not orientdb_binary.stat.exists
   block:
-    - name: download tgz
-      become: yes
+    - name: downloading {{ orientdb_tgz_url }} to {{ orientdb_tmp_tgz }}
+      become: true
       become_user: root
       get_url:
         url: '{{ orientdb_tgz_url }}'
-        dest: '{{ orientdb_home }}/{{ orientdb_tgz }}'
+        dest: '{{ orientdb_tmp_tgz }}'
         owner: '{{ orientdb_user }}'
         group: '{{ orientdb_group }}'
         checksum: '{{ orientdb_checksum }}'
         mode: '0644'
-    - name: unarchive
-      become: yes
+    - name: unarchive {{ orient_tmp_tgz }} to {{ orientdb_home }}
+      become: true
       become_user: root
       unarchive:
-        remote_src: yes
-        src: '{{ orientdb_home }}/{{ orientdb_tgz }}'
+        remote_src: true
+        src: '{{ orientdb_tmp_tgz }}'
         dest: '{{ orientdb_home }}'
         owner: '{{ orientdb_user }}'
         group: '{{ orientdb_group }}'
         creates: '{{ orientdb_install_dir }}'
   always:
-    - name: cleanup...
-      become: yes
+    - name: rm {{ orientdb_tmp_tgz }}
+      become: true
       become_user: root
       file:
-        path: '{{ orientdb_home }}/{{ orientdb_tgz }}'
+        path: '{{ orientdb_tmp_tgz }}'
         state: absent
 
-- name: link orientdb HOME
-  become: yes
+- name: linking {{ orientdb_link_dir }} to {{ orientdb_install_dir }}
+  become: true
   become_user: root
   file:
     state: link

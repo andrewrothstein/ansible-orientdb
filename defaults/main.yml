@@ -1,13 +1,21 @@
 ---
 # defaults file for orientdb
-orientdb_os : linux
-orientdb_mirror : https://s3.us-east-2.amazonaws.com/orientdb3/releases
-orientdb_ver : '3.0.17'
+orientdb_mirror: https://s3.us-east-2.amazonaws.com
+orientdb_ver:
+  major: 3
+  minor: 2
+  patch: 4
+
+orientdb_os: linux
+orientdb_user: orientdb
+orientdb_group: orientdb
+
+orientdb_home: /var/orientdb
+
 orientdb_checksums:
-  # wget https://s3.us-east-2.amazonaws.com/orientdb3/releases/3.0.17/orientdb-3.0.17.tar.gz
+  # https://s3.us-east-2.amazonaws.com/orientdb3/releases/3.0.17/orientdb-3.0.17.tar.gz
   '3.0.17': sha256:2beaca34eb990f7e75284087ae722ad130fd7245b9ba345676d7ab17bb60e11b
-
-orientdb_user : orientdb
-orientdb_group : orientdb
-
-orientdb_home : /var/orientdb
+  # https://s3.us-east-2.amazonaws.com/orientdb3/releases/3.1.15/orientdb-3.1.15.tar.gz
+  '3.1.15': sha256:1e905e3d9a77f050d926e91ee739eb20cb0313a4f77fbe1c187076688d7cbb95
+  # https://s3.us-east-2.amazonaws.com/orientdb3/releases/3.2.4/orientdb-3.2.4.tar.gz
+  '3.2.4': sha256:28ff1f476127cc3034590064a3f5e80339717e58e84e64abdbf6c2ddeff0f29f
