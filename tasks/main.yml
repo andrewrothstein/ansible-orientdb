@@ -35,7 +35,7 @@
         group: '{{ orientdb_group }}'
         checksum: '{{ orientdb_checksum }}'
         mode: '0644'
-    - name: unarchive {{ orient_tmp_tgz }} to {{ orientdb_home }}
+    - name: unarchive {{ orientdb_tmp_tgz }} to {{ orientdb_home }}
       become: true
       become_user: root
       unarchive:
