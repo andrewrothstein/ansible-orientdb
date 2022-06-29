@@ -1,28 +1,32 @@
 #!/usr/bin/env sh
 set -e
 DIR=~/Downloads
-MIRROR=https://s3.us-east-2.amazonaws.com
-
+MIRROR=https://repo1.maven.org/maven2/com/orientechnologies
 
 dl()
 {
     local major_ver=$1
     local minor_ver=$2
     local patch_ver=$3
-    local archive_type=${4:-tar.gz}
+    local edition=$4
+    local archive_type=${5:-tar.gz}
     local fq_ver="${major_ver}.${minor_ver}.${patch_ver}"
-    local file="orientdb-${fq_ver}.${archive_type}"
-    local url="${MIRROR}/orientdb${major_ver}/releases/${fq_ver}/${file}"
+    local file="orientdb-${edition}-${fq_ver}.${archive_type}"
+    local url="${MIRROR}/orientdb-${edition}/${fq_ver}/${file}"
     local lfile="${DIR}/${file}"
 
     if [ ! -e $lfile ];
     then
-        wget -q -O $lfile $url
+        curl -sSLf -o $lfile $url
     fi
 
     printf "  # %s\n" $url
     printf "  '%s': sha256:%s\n" $fq_ver $(sha256sum $lfile | awk '{print $1}')
 }
 
-dl 3 1 15
-#dl 3 2 4
+dl 3 0 17 community
+dl 3 2 4 community
+dl 3 2 5 community
+dl 3 2 6 community
+dl 3 2 7 community
+dl 3 2 8 community

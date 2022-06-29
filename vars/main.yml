@@ -1,10 +1,10 @@
 ---
 # vars file for orientdb
 orientdb_ver_str: '{{ orientdb_ver.major }}.{{ orientdb_ver.minor }}.{{ orientdb_ver.patch }}'
-orientdb_name: 'orientdb-{{ orientdb_ver_str }}'
+orientdb_name: 'orientdb-{{ orientdb_ver.edition }}-{{ orientdb_ver_str }}'
 orientdb_tgz: '{{ orientdb_name }}.tar.gz'
 
-orientdb_tgz_url: '{{ orientdb_mirror }}/orientdb{{ orientdb_ver.major }}/releases/{{ orientdb_ver_str }}/{{ orientdb_tgz }}'
+orientdb_tgz_url: '{{ orientdb_mirror }}/orientdb-{{ orientdb_ver.edition }}/{{ orientdb_ver_str }}/{{ orientdb_tgz }}'
 orientdb_checksum: '{{ orientdb_checksums[orientdb_ver_str] }}'
 
 orientdb_install_dir: '{{ orientdb_home }}/{{ orientdb_name }}'

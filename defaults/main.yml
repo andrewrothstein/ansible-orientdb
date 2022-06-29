@@ -1,10 +1,11 @@
 ---
 # defaults file for orientdb
-orientdb_mirror: https://s3.us-east-2.amazonaws.com
+orientdb_mirror: https://repo1.maven.org/maven2/com/orientechnologies
 orientdb_ver:
   major: 3
   minor: 2
-  patch: 4
+  patch: 8
+  edition: community
 
 orientdb_os: linux
 orientdb_user: orientdb
@@ -13,9 +14,15 @@ orientdb_group: orientdb
 orientdb_home: /var/orientdb
 
 orientdb_checksums:
-  # https://s3.us-east-2.amazonaws.com/orientdb3/releases/3.0.17/orientdb-3.0.17.tar.gz
-  '3.0.17': sha256:2beaca34eb990f7e75284087ae722ad130fd7245b9ba345676d7ab17bb60e11b
-  # https://s3.us-east-2.amazonaws.com/orientdb3/releases/3.1.15/orientdb-3.1.15.tar.gz
-  '3.1.15': sha256:1e905e3d9a77f050d926e91ee739eb20cb0313a4f77fbe1c187076688d7cbb95
-  # https://s3.us-east-2.amazonaws.com/orientdb3/releases/3.2.4/orientdb-3.2.4.tar.gz
-  '3.2.4': sha256:28ff1f476127cc3034590064a3f5e80339717e58e84e64abdbf6c2ddeff0f29f
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.0.17/orientdb-community-3.0.17.tar.gz
+  '3.0.17': sha256:4654a7d334f64a8b26597ef74e07e41930b3fbed5727c447cbd0edf9a007d287
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.4/orientdb-community-3.2.4.tar.gz
+  '3.2.4': sha256:7eadde22bb5a377f54e961d0ac6a7db79ecde4d50084096e71b2eb4fd9c4be29
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.5/orientdb-community-3.2.5.tar.gz
+  '3.2.5': sha256:92bda37819f7d83ad2db1b499fbac3baf9f28b5eb8ae50e99bb7e231a3797d39
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.6/orientdb-community-3.2.6.tar.gz
+  '3.2.6': sha256:70a5738a5256402b586e83583d5e73d1f370224fe3ad7c7b6827a6e353c41336
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.7/orientdb-community-3.2.7.tar.gz
+  '3.2.7': sha256:05f2f0f2cd5df883dab5456ea6556cf62a0e04eb5324ebd198d9594e990c6ab4
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.8/orientdb-community-3.2.8.tar.gz
+  '3.2.8': sha256:e217e1fa185fa8cd24e18dcb5aaddcb811390a1aa3e8cc88da78ab28c6c091a4
