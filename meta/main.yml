@@ -26,11 +26,12 @@ galaxy_info:
     - buster
   - name: EL
     versions:
-    - all
+    - 8
+    - 9
   - name: Fedora
     versions:
-    - 35
     - 36
+    - 37
   - name: Ubuntu
     versions:
     - bionic
