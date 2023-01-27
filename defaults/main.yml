@@ -4,7 +4,7 @@ orientdb_mirror: https://repo1.maven.org/maven2/com/orientechnologies
 orientdb_ver:
   major: 3
   minor: 2
-  patch: 14
+  patch: 15
   edition: community
 
 orientdb_user: orientdb
@@ -37,3 +37,5 @@ orientdb_checksums:
   '3.2.13': sha256:92f580ac7f5ea7e7a1abc760eafbe4d544def73ccfbfee57e1d514281cf88284
   # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.14/orientdb-community-3.2.14.tar.gz
   '3.2.14': sha256:ae40f0469aa707cf1293ae64e0517b06b44a9706e5a82fcf79db7ed031fa1883
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.15/orientdb-community-3.2.15.tar.gz
+  '3.2.15': sha256:3611bac33b4862c2f11909e0b6a1e4e8290afd7aba60343eaeafafc12aac2a87
