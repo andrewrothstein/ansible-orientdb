@@ -24,4 +24,4 @@ dl()
     printf "  '%s': sha256:%s\n" $fq_ver $(sha256sum $lfile | awk '{print $1}')
 }
 
-dl 3 2 18 community
+dl 3 2 19 community

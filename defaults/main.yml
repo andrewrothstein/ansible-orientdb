@@ -4,7 +4,7 @@ orientdb_mirror: https://repo1.maven.org/maven2/com/orientechnologies
 orientdb_ver:
   major: 3
   minor: 2
-  patch: 18
+  patch: 19
   edition: community
 
 orientdb_user: orientdb
@@ -43,3 +43,5 @@ orientdb_checksums:
   '3.2.17': sha256:55c2f914ae6eb77fa993928b540d8731e4548fc6d580a4618448a395c91770d8
   # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.18/orientdb-community-3.2.18.tar.gz
   '3.2.18': sha256:dcbde789d27c00e021a05e2943c02c8c9144ca503497db719170f3e26c0d1a2c
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.19/orientdb-community-3.2.19.tar.gz
+  '3.2.19': sha256:7556793edbaf5e5cd1ef1b920bd9a49308281b875a6b40711c6f13dbdf1d1c2e
