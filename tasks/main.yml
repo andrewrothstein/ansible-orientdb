@@ -1,50 +1,53 @@
 ---
-- include_role:
-    name: andrewrothstein.unarchive-deps
-- include_role:
+- name: Installing andrewrothstein.unarchivedeps
+  ansible.builtin.include_role:
+    name: andrewrothstein.unarchivedeps
+- name: Installing andrewrothstein.temurin
+  ansible.builtin.include_role:
     name: andrewrothstein.temurin
   vars:
-    openjdk_app: jre
-- name: create orientdb group
+    temurin_app: jre
+- name: Create orientdb group
   become: true
   become_user: root
-  group:
+  ansible.builtin.group:
     name: '{{ orientdb_group }}'
     state: present
 
-- name: create orientdb user and home directory
+- name: Create orientdb user and home directory
   become: true
   become_user: root
-  user:
+  ansible.builtin.user:
     name: '{{ orientdb_user }}'
     group: '{{ orientdb_group }}'
     home: '{{ orientdb_home }}'
     state: present
 
-- name: check for install in {{ orientdb_install_dir }}
+- name: Check for install in {{ orientdb_install_dir }}
   become: true
   become_user: root
-  stat:
+  ansible.builtin.stat:
     path: '{{ orientdb_install_dir }}'
   changed_when: false
   register: orientdb_binary
 
-- when: not orientdb_binary.stat.exists
+- name: Downloading and installing orientdb
+  when: not orientdb_binary.stat.exists
   block:
-    - name: downloading {{ orientdb_tgz_url }} to {{ orientdb_tmp_tgz }}
+    - name: Downloading {{ orientdb_tgz_url }} to {{ orientdb_tmp_tgz }}
       become: true
       become_user: root
-      get_url:
+      ansible.builtin.get_url:
         url: '{{ orientdb_tgz_url }}'
         dest: '{{ orientdb_tmp_tgz }}'
         owner: '{{ orientdb_user }}'
         group: '{{ orientdb_group }}'
         checksum: '{{ orientdb_checksum }}'
-        mode: '0644'
-    - name: unarchive {{ orientdb_tmp_tgz }} to {{ orientdb_home }}
+        mode: '644'
+    - name: Unarchive {{ orientdb_tmp_tgz }} to {{ orientdb_home }}
       become: true
       become_user: root
-      unarchive:
+      ansible.builtin.unarchive:
         remote_src: true
         src: '{{ orientdb_tmp_tgz }}'
         dest: '{{ orientdb_home }}'
@@ -52,17 +55,17 @@
         group: '{{ orientdb_group }}'
         creates: '{{ orientdb_install_dir }}'
   always:
-    - name: rm {{ orientdb_tmp_tgz }}
+    - name: Rm -f {{ orientdb_tmp_tgz }}
       become: true
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ orientdb_tmp_tgz }}'
         state: absent
 
-- name: linking {{ orientdb_link_dir }} to {{ orientdb_install_dir }}
+- name: Linking {{ orientdb_link_dir }} to {{ orientdb_install_dir }}
   become: true
   become_user: root
-  file:
+  ansible.builtin.file:
     state: link
     src: '{{ orientdb_install_dir }}'
     dest: '{{ orientdb_link_dir }}'

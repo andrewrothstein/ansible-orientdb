@@ -4,7 +4,7 @@ orientdb_mirror: https://repo1.maven.org/maven2/com/orientechnologies
 orientdb_ver:
   major: 3
   minor: 2
-  patch: 19
+  patch: 38
   edition: community
 
 orientdb_user: orientdb
@@ -45,3 +45,41 @@ orientdb_checksums:
   '3.2.18': sha256:dcbde789d27c00e021a05e2943c02c8c9144ca503497db719170f3e26c0d1a2c
   # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.19/orientdb-community-3.2.19.tar.gz
   '3.2.19': sha256:7556793edbaf5e5cd1ef1b920bd9a49308281b875a6b40711c6f13dbdf1d1c2e
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.20/orientdb-community-3.2.20.tar.gz
+  '3.2.20': sha256:d980710918555f25ac44446401bdd78f5ca62444765c49724d6a64ad7ad3a954
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.21/orientdb-community-3.2.21.tar.gz
+  '3.2.21': sha256:57d56415c56369dcc556a95696411f627480e9ad5440b3c88f9b1db7e59867f9
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.22/orientdb-community-3.2.22.tar.gz
+  '3.2.22': sha256:71b57160ffcd3c45d725a7f4f768cf43659183032591a667cb9de7830b7ee79e
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.23/orientdb-community-3.2.23.tar.gz
+  '3.2.23': sha256:1c6f66b48a6ef5fff69c4acc6bed58cc4ac7f900db5d4286d8e1dc8d6d8e844b
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.24/orientdb-community-3.2.24.tar.gz
+  '3.2.24': sha256:91cf9717e3a7278861b61d0a4d29670c5450ec5122e9ec0acfd532b8324e07b9
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.25/orientdb-community-3.2.25.tar.gz
+  '3.2.25': sha256:b275121bd0ef355a1de7982b6f29346240df7a6689be36d2f8cae64e79c335ab
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.26/orientdb-community-3.2.26.tar.gz
+  '3.2.26': sha256:21722ad380f30e1de106ac00817e4871bf0c1d2eaa4c801819732c8ce3297dc0
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.27/orientdb-community-3.2.27.tar.gz
+  '3.2.27': sha256:9dd9d6d0da9383da36050c7f46335313d0e820d3546cd313ead755bb6ead365c
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.28/orientdb-community-3.2.28.tar.gz
+  '3.2.28': sha256:e3da3859bb02d08cff24aae32e9eec9af55749bc749b10c12f3a08d15611f11b
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.29/orientdb-community-3.2.29.tar.gz
+  '3.2.29': sha256:0d83bd1032582f880c004d3f7842fb2c67d6feaed600b247a2d93f50ec036d09
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.30/orientdb-community-3.2.30.tar.gz
+  '3.2.30': sha256:f4eebe6a271bcd9fda96f9d4e926afb10f2bc08ba28bddf7668edcf3d389c291
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.31/orientdb-community-3.2.31.tar.gz
+  '3.2.31': sha256:819bdb6faa75ae47acc7d645b970d801e79bd0574655973b01c0a7199cd7b996
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.32/orientdb-community-3.2.32.tar.gz
+  '3.2.32': sha256:b3ee4ff5ed35b262571c0ce56b2c64767e253fd8d43da710114e8042979e3e55
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.33/orientdb-community-3.2.33.tar.gz
+  '3.2.33': sha256:b834e9d0343a6c4bb667b0aed5bff9d0050eb6f6d8d2b71ea420af3ef67c3f4e
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.34/orientdb-community-3.2.34.tar.gz
+  '3.2.34': sha256:a58ddd231a85796f6ca2a0e7b941465ad8123d1687438babc47a7382258b7669
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.35/orientdb-community-3.2.35.tar.gz
+  '3.2.35': sha256:4df35bb7623f8540ff1aa3aa898b222e0123c6141df761fa890df8e2163fbe43
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.36/orientdb-community-3.2.36.tar.gz
+  '3.2.36': sha256:715da51166b8e19a2a55e1b1feb7933e72e1502c40d26d05bd9c15f894ded8b9
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.37/orientdb-community-3.2.37.tar.gz
+  '3.2.37': sha256:101d93340ae17cfdc622ef37e30c8c3993874ab199fd5ff3fc76d466740fefe3
+  # https://repo1.maven.org/maven2/com/orientechnologies/orientdb-community/3.2.38/orientdb-community-3.2.38.tar.gz
+  '3.2.38': sha256:53fb12935aa1ed7716ff894fd9575546b4107db088b829495283c6b196d3789b
